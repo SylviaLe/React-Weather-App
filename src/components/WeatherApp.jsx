@@ -10,19 +10,21 @@ export class WeatherApp extends Component {
     constructor(){
         super()
         this.state = {
-        city: undefined,
-        country: undefined,
-        icon: undefined,
-        temp: undefined,
-        min: undefined,
-        max: undefined,
-        feel: undefined,
-        des: '', 
-        error: false,
-        wind: undefined,
-        humidity: undefined,
-        rise: undefined,
-        set: undefined,
+            location: undefined,
+            city: undefined,
+            country: undefined,
+            icon: undefined,
+            temp: undefined,
+            min: undefined,
+            max: undefined,
+            feel: undefined,
+            des: '', 
+            error: false,
+            wind: undefined,
+            humidity: undefined,
+            rise: undefined,
+            set: undefined,
+            bgcolors: '',
         }
 
         this.weatherIcon = {
@@ -41,27 +43,35 @@ export class WeatherApp extends Component {
         switch (true) {
         case rangeId >= 200 && rangeId < 232:
             this.setState({ icon: icons.Thunderstorm });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #313363, #292b59, #6e72af)'})
             break;
         case rangeId >= 300 && rangeId <= 321:
             this.setState({ icon: icons.Drizzle });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #7d9ac2, #334f74, #20344f)'})
             break;
         case rangeId >= 500 && rangeId <= 521:
             this.setState({ icon: icons.Rain });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #7d9ac2, #334f74, #20344f)'})
             break;
         case rangeId >= 600 && rangeId <= 622:
             this.setState({ icon: icons.Snow });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #06145e, #69d7fc, #c7f7fe)'})
             break;
         case rangeId >= 701 && rangeId <= 781:
             this.setState({ icon: icons.Atmosphere });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #f6f5fa, #dedde2, #60667a)'})
             break;
         case rangeId === 800:
             this.setState({ icon: icons.Clear });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #f8c56d, #f7cd68, #faae78)'})
             break;
         case rangeId >= 801 && rangeId <= 804:
             this.setState({ icon: icons.Clouds });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #f7d1cd, #b392ac, #735d78)'})
             break;
         default:
             this.setState({ icon: icons.Clouds });
+            this.setState({bgcolors: 'linear-gradient(-45deg, #f7d1cd, #b392ac, #735d78)'})
         }
     }
 
@@ -92,7 +102,7 @@ export class WeatherApp extends Component {
 
             else{
                 this.setState({
-                    location: `${response.name}, ${response.sys.country}`,
+                    location: city,
                     temp:response.main.temp,
                     min:response.main.temp_max,
                     max:response.main.temp_min,
@@ -140,6 +150,7 @@ export class WeatherApp extends Component {
                     humidity={this.state.humidity}
                     rise={this.state.rise}
                     set={this.state.set}
+                    bgcolors={this.state.bgcolors}
                 />
             </div>
         )

@@ -5,16 +5,17 @@ import 'weather-icons/css/weather-icons.css'
 import React from 'react';
 
 
-class App extends React.Component{
-
+function App(){
   //pull the set states above here, throw it to the props to pass to the component
-  render(){
+  
     return(
       <div className="App">
-        <WeatherApp/>
+        <div className="container w-75">
+          <WeatherApp/>
+        </div>
       </div>
     )
-  }
+  
 }
 
 
